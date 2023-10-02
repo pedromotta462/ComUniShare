@@ -24,11 +24,10 @@ export default function RootLayout({
         <NavBar />
         {children}
         <Footer />
-        <div className='fixed right-5 bottom-[130px]'>
+        <div className='fixed z-10 right-5 bottom-[130px]'>
           <Button className='w-[70px] h-[70px] rounded-full border border-2 bg-[#E26E44] hover:bg-[#d2bc14]'>
             <MessagesSquare color='black' size={48} className=''/>
           </Button>
-          
         </div>
       </body>
     </html>

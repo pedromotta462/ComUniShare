@@ -52,8 +52,8 @@ function NavBar() {
     const isButtonActive = (path: string) => navigation === path;
 
     return (
-        <nav className="flex flex-col items-center justify-center bg-[#E26E44] w-full fixed top-0 left-0 shadow-xl">
-            <div className="flex items-center justify-between p-5 ph w-full">
+        <nav className="z-10 flex flex-col items-center justify-center bg-[#E26E44] w-full fixed top-0 left-0 shadow-xl">
+            <div className="flex items-center justify-between p-2 ph w-full">
                 
                 <div className="flex items-center justify-center">
                     <Image
@@ -104,10 +104,10 @@ function NavBar() {
                     <Button
                         size="lg"
                         className={`m-2 bg-transparent text-[#FADF67] text-base ${
-                            isButtonActive('/OMS') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
+                            isButtonActive('/ODS') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
                         }`}
                     >
-                    <Link href="/OMS">OMS</Link>
+                    <Link href="/ODS">ODS</Link>
                     </Button>
                 </div>
 

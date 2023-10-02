@@ -11,8 +11,8 @@ Projeto do grupo 10
 
 ## References
 
-[NextJS] {https://nextjs.org/}
+[NextJS] [https://nextjs.org/]
 
-[ShadcnUI] {https://ui.shadcn.com/}
+[ShadcnUI] [https://ui.shadcn.com/]
 
-[TailwindCSS] {https://tailwindcss.com/}
+[TailwindCSS] [https://tailwindcss.com/]
