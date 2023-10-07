@@ -10,45 +10,103 @@ Projeto do grupo 10
 
 ## Diagrama de Classes
 
+```mermaid
 classDiagram
-  class User {
-    +Nome: string
-    +Endereço: string
-    +Informações de Contato: string
-    +Perfil: string
+  class Usuario {
+    +id: int
+    +nome: string
+    +endereco: string
+    +contato: string
+    +perfil: string
+    +Registrar()
+    +Autenticar()
+    +ListarItensCompartilhados()
+    +ListarServicosOferecidos()
+    +RealizarTransacao()
+    +IniciarChat(Usuario destinatario)
+    +EnviarMensagem(Usuario destinatario, string mensagem)
   }
 
   class ItemCompartilhavel {
-    +Nome: string
-    +Descrição: string
-    +Dono: User
+    +id: int
+    +nome: string
+    +descricao: string
+    +dono: Usuario
+    +Listar()
+    +Adicionar()
+    +Remover()
   }
 
   class ServicoCompartilhavel {
-    +Nome: string
-    +Descrição: string
-    +Prestador: User
+    +id: int
+    +nome: string
+    +descricao: string
+    +prestador: Usuario
+    +Listar()
+    +Adicionar()
+    +Remover()
   }
 
   class Transacao {
-    +Data: Date
-    +ItemCompartilhavel: ItemCompartilhavel
-    +ServicoCompartilhavel: ServicoCompartilhavel
-    +Avaliação: Feedback
+    +id: int
+    +data: DateTime
+    +usuarioRequisitante: Usuario
+    +usuarioOfertante: Usuario
+    +itemCompartilhavel: ItemCompartilhavel
+    +servicoCompartilhavel: ServicoCompartilhavel
+    +Registrar()
+    +Aprovar()
+    +Rejeitar()
+    +Finalizar()
   }
 
   class Feedback {
-    +Avaliação: string
-    +Comentário: string
+    +id: int
+    +avaliacao: int
+    +comentario: string
+    +usuario: Usuario
+    +itemCompartilhavel: ItemCompartilhavel
+    +servicoCompartilhavel: ServicoCompartilhavel
+    +Registrar()
+    +Editar()
+    +Excluir()
   }
 
-  User --* ItemCompartilhavel : Compartilha
-  User --* ServicoCompartilhavel : Oferece
-  User --* Transacao : Participa
-  Transacao --* ItemCompartilhavel : Inclui
-  Transacao --* ServicoCompartilhavel : Inclui
-  Transacao --* Feedback : Recebe
+  class Chat {
+    +id: int
+    +mensagens: string[]
+    +participantes: Usuario[]
+    +Iniciar(Usuario participante1, Usuario participante2)
+    +EnviarMensagem(Usuario remetente, string mensagem)
+  }
 
+  class SistemaNotificacoes {
+    +EnviarNotificacaoEmail(Usuario destinatario, string mensagem)
+    +EnviarNotificacaoPush(Usuario destinatario, string mensagem)
+  }
+
+  class RedesSociais {
+    +CompartilharItem(ItemCompartilhavel item)
+    +CompartilharServico(ServicoCompartilhavel servico)
+  }
+
+  Usuario *-- ItemCompartilhavel : Possui
+  Usuario *-- ServicoCompartilhavel : Oferece
+  Usuario *-- Transacao : Participa
+  Usuario *-- Feedback : Escreve
+  Usuario *-- Chat : Inicia, EnviaMensagem
+  Transacao -- ItemCompartilhavel : Inclui
+  Transacao -- ServicoCompartilhavel : Inclui
+  Transacao --* Usuario : Requisitante
+  Transacao --* Usuario : Ofertante
+  Feedback -- ItemCompartilhavel : ReferenteA
+  Feedback -- ServicoCompartilhavel : ReferenteA
+  Chat --* Usuario : Participa, EnviaMensagem
+  SistemaNotificacoes --* Usuario : EnviaNotificacaoEmail, EnviaNotificacaoPush
+  RedesSociais --* Usuario : CompartilharItem, CompartilharServico
+
+```
+##
 
 ## References
 
