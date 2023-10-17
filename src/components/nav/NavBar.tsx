@@ -77,37 +77,37 @@ function NavBar() {
                     <Button
                         size="lg"
                         className={`m-2 bg-transparent text-[#FADF67] text-base ${
-                            isButtonActive('/') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
+                            isButtonActive('/Home') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
                         }`}
                     >
-                    <Link href="/">Home</Link>
+                    <Link href="/Home">Home</Link>
                     </Button>
                     <div className="h-10 w-[1px] bg-[#E8FF0B] m-1"></div>
                     <Button
                         size="lg"
                         className={`m-2 bg-transparent text-[#FADF67] text-base ${
-                            isButtonActive('/Services') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
+                            isButtonActive('/Home/Services') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
                         }`}
                     >
-                    <Link href="/Services">Serviços</Link>
+                    <Link href="/Home/Services">Serviços</Link>
                     </Button>
                     <div className="h-10 w-[1px] bg-[#E8FF0B] m-1"></div>
                     <Button
                         size="lg"
                         className={`m-2 bg-transparent text-[#FADF67] text-base ${
-                            isButtonActive('/Objects') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
+                            isButtonActive('/Home/Objects') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
                         }`}
                     >
-                    <Link href="/Objects">Objetos</Link>
+                    <Link href="/Home/Objects">Objetos</Link>
                     </Button>
                     <div className="h-10 w-[1px] bg-[#E8FF0B] m-1"></div>
                     <Button
                         size="lg"
                         className={`m-2 bg-transparent text-[#FADF67] text-base ${
-                            isButtonActive('/ODS') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
+                            isButtonActive('/Home/ODS') ? 'bg-[#FADF67] text-[#E26E44]' : 'hover:bg-[#FADF67] hover:text-[#E26E44]'
                         }`}
                     >
-                    <Link href="/ODS">ODS</Link>
+                    <Link href="/Home/ODS">ODS</Link>
                     </Button>
                 </div>
 
@@ -143,7 +143,7 @@ function NavBar() {
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>
                                 <LogOut className="mr-2 h-4 w-4" />
-                                <span>Log out</span>
+                                <Link href='/'><span>Log out</span></Link>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
