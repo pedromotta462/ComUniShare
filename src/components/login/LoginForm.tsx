@@ -8,7 +8,7 @@ import Login from "./Login";
 import Register from "./Register";
 import { useState } from "react";
 
-function loginform() {
+function LoginForm() {
   const [showLogin, setShowLogin] = useState(true);
 
   const toggleRegisterForm = () => {
@@ -55,4 +55,4 @@ function loginform() {
   );
 }
 
-export default loginform;
+export default LoginForm;
