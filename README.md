@@ -2,7 +2,7 @@
 
 Projeto do grupo 10 
 
-[link da aplicação](https://com-uni-share-odv18nr29-pedromotta462.vercel.app/)
+[link da aplicação](https://com-uni-share.vercel.app/)
 
 ## Screenshots
 
