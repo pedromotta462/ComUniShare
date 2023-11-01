@@ -13,97 +13,85 @@ Projeto do grupo 10
 ```mermaid
 classDiagram
   class Usuario {
-    +id: int
-    +nome: string
-    +endereco: string
-    +contato: string
-    +perfil: string
-    +Registrar()
-    +Autenticar()
-    +ListarItensCompartilhados()
-    +ListarServicosOferecidos()
-    +RealizarTransacao()
-    +IniciarChat(Usuario destinatario)
-    +EnviarMensagem(Usuario destinatario, string mensagem)
+    -id: int
+    -nome: string
+    -email: string
+    -senha: string
+    -endereco: string
+    -contato: string
+    -perfil: string
+    +registrar(email: string, senha: string)
+    +autenticar(email: string, senha: string)
+    +listarItensCompartilhados()
+    +listarServicosOferecidos()
+    +realizarTransacao(compartilhavel: Compartilhavel)
+    +iniciarChat(destinatario: Usuario)
+    +enviarMensagem(destinatario: Usuario, mensagem: string)
+    +criarCompartilhavel(tipo: string, nome: string, descricao: string, preco: double)
   }
 
-  class ItemCompartilhavel {
-    +id: int
-    +nome: string
-    +descricao: string
-    +dono: Usuario
-    +Listar()
-    +Adicionar()
-    +Remover()
-  }
-
-  class ServicoCompartilhavel {
-    +id: int
-    +nome: string
-    +descricao: string
-    +prestador: Usuario
-    +Listar()
-    +Adicionar()
-    +Remover()
+  class Compartilhavel {
+    -id: int
+    -nome: string
+    -descricao: string
+    -dono: Usuario
+    -tipo: string
+    -preco: double
+    +listar()
+    +adicionar()
+    +remover()
+    +compartilhar(redesSociais: string)
   }
 
   class Transacao {
-    +id: int
-    +data: DateTime
-    +usuarioRequisitante: Usuario
-    +usuarioOfertante: Usuario
-    +itemCompartilhavel: ItemCompartilhavel
-    +servicoCompartilhavel: ServicoCompartilhavel
-    +Registrar()
-    +Aprovar()
-    +Rejeitar()
-    +Finalizar()
+    -id: int
+    -data: Date
+    -usuarioRequisitante: Usuario
+    -usuarioOfertante: Usuario
+    -compartilhavel: Compartilhavel
+    +registrar()
+    +aprovar()
+    +rejeitar()
+    +finalizar()
   }
 
   class Feedback {
-    +id: int
-    +avaliacao: int
-    +comentario: string
-    +usuario: Usuario
-    +itemCompartilhavel: ItemCompartilhavel
-    +servicoCompartilhavel: ServicoCompartilhavel
-    +Registrar()
-    +Editar()
-    +Excluir()
+    -id: int
+    -avaliacao: int
+    -comentario: string
+    -usuario: Usuario
+    -compartilhavel: Compartilhavel
+    +registrar()
+    +editar()
+    +excluir()
   }
 
   class Chat {
-    +id: int
-    +mensagens: string[]
-    +participantes: Usuario[]
-    +Iniciar(Usuario participante1, Usuario participante2)
-    +EnviarMensagem(Usuario remetente, string mensagem)
+    -id: int
+    -mensagens: string[]
+    -participantes: Usuario[]
+    +iniciar(participante1: Usuario, participante2: Usuario)
+    +enviarMensagem(remetente: Usuario, mensagem: string)
   }
 
-  class SistemaNotificacoes {
-    +EnviarNotificacaoEmail(Usuario destinatario, string mensagem)
-    +EnviarNotificacaoPush(Usuario destinatario, string mensagem)
+  class NotificacoesService {
+    -id: int
+    -titulo: string
+    -descricao: string
+    -data: Date
+    +enviarNotificacaoEmail(destinatario: Usuario)
   }
 
-  class RedesSociais {
-    +CompartilharItem(ItemCompartilhavel item)
-    +CompartilharServico(ServicoCompartilhavel servico)
-  }
-
-  Usuario *-- ItemCompartilhavel : Possui
-  Usuario *-- ServicoCompartilhavel : Oferece
-  Usuario *-- Transacao : Participa
-  Usuario *-- Feedback : Escreve
-  Usuario *-- Chat : Inicia, EnviaMensagem
-  Transacao -- ItemCompartilhavel : Inclui
-  Transacao -- ServicoCompartilhavel : Inclui
-  Transacao --* Usuario : Requisitante
-  Transacao --* Usuario : Ofertante
-  Feedback -- ItemCompartilhavel : ReferenteA
-  Feedback -- ServicoCompartilhavel : ReferenteA
-  Chat --* Usuario : Participa, EnviaMensagem
-  SistemaNotificacoes --* Usuario : EnviaNotificacaoEmail, EnviaNotificacaoPush
-  RedesSociais --* Usuario : CompartilharItem, CompartilharServico
+  Usuario "1" -- "N" Compartilhavel : possui
+  Usuario "1" -- "N" Transacao : participa
+  Usuario "1" -- "N" Feedback : escreve
+  Usuario "1" -- "N" Chat : inicia, enviaMensagem
+  Transacao "1" -- "1" Compartilhavel : inclui
+  Transacao "1" -- "N" Usuario : requisitante
+  Transacao "1" -- "N" Usuario : ofertante
+  Feedback "1" -- "1" Compartilhavel : referenteA
+  Chat "N" -- "N" Usuario : participa, enviaMensagem
+  NotificacoesService "N" -- "1" Usuario : enviarNotificacaoEmail
 
 ```
 ##
